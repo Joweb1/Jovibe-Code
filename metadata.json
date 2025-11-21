@@ -1,0 +1,5 @@
+{
+  "name": "Jovibe Code",
+  "description": "An AI-powered mobile-first code editor for HTML, CSS, and JavaScript. Write code traditionally or use AI prompts to build and modify your webpages, with a live preview and debugging console.",
+  "requestFramePermissions": []
+}
