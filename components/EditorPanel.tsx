@@ -448,7 +448,7 @@ const EditorPanel: React.FC<EditorPanelProps> = ({
       });
   };
 
-  const sharedTypoClasses = "font-mono font-normal text-base leading-6 tracking-normal [font-variant-ligatures:none] [text-rendering:optimizeLegibility] [-webkit-font-smoothing:antialiased] [-moz-osx-font-smoothing:grayscale] [font-synthesis:none] [tab-size:4]";
+  const sharedTypoClasses = "font-mono font-normal leading-6 tracking-normal [font-variant-ligatures:none] [text-rendering:optimizeLegibility] [-webkit-font-smoothing:antialiased] [-moz-osx-font-smoothing:grayscale] [font-synthesis:none] [tab-size:4]";
   
   const editorPaddingClasses = isQuickBarOpen ? "p-4 pr-[5rem]" : "p-4"; 
 
@@ -511,7 +511,7 @@ const EditorPanel: React.FC<EditorPanelProps> = ({
                     // Don't automatically close color picker on blur immediately as interacting with the picker causes a blur
                 }, 150);
             }}
-            className={`absolute inset-0 w-full h-full bg-transparent text-transparent caret-white z-10 overflow-auto resize-none focus:outline-none whitespace-pre ${sharedTypoClasses} ${editorPaddingClasses} transition-[padding] duration-300`}
+            className={`absolute inset-0 w-full h-full bg-transparent text-transparent text-[14px] caret-white z-10 overflow-auto resize-none focus:outline-none whitespace-pre ${sharedTypoClasses} ${editorPaddingClasses} transition-[padding] duration-300`}
             placeholder={`Write your HTML, CSS, and JavaScript code here...`}
             spellCheck="false"
             autoCapitalize="off"

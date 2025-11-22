@@ -2,8 +2,13 @@
 import { GoogleGenAI, Type } from "@google/genai";
 import type { ChatMessage } from '../types';
 
-// FIX: Initialize GoogleGenAI strictly with process.env.API_KEY as per guidelines.
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+// FIX: Initialize GoogleGenAI with the API key from environment variables.
+const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+
+if (!apiKey) {
+  throw new Error("API Key not found. Please add your VITE_GEMINI_API_KEY to your .env.local file.");
+}
+const ai = new GoogleGenAI({ apiKey });
 
 const responseSchema = {
   type: Type.OBJECT,
