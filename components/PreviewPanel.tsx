@@ -1,5 +1,3 @@
-
-
 import React, { useState, useEffect, useMemo } from 'react';
 import type { ConsoleMessage } from '../types';
 
@@ -9,7 +7,7 @@ interface PreviewPanelProps {
 
 const PreviewPanel: React.FC<PreviewPanelProps> = ({ sourceDoc }) => {
   const [consoleMessages, setConsoleMessages] = useState<ConsoleMessage[]>([]);
-  const [isConsoleCollapsed, setIsConsoleCollapsed] = useState(false);
+  const [isConsoleCollapsed, setIsConsoleCollapsed] = useState(true);
   
   const finalSrcDoc = useMemo(() => {
     const consoleInterceptor = `

@@ -44,25 +44,17 @@
       pre[class*="language-"] {
         background: transparent !important;
         margin: 0 !important;
-        /* FIX: Removed 'padding: 0 !important;' to allow Tailwind padding classes to apply correctly, aligning the code view with the textarea. */
         border-radius: 0 !important;
       }
       code[class*="language-"] {
         font-family: 'JetBrains Mono', monospace !important;
-        font-size: 14px; /* Corresponds to tailwind's 'text-sm' */
-        /* FIX: Match the line-height of the textarea (leading-6 -> 1.5rem) to fix vertical alignment. */
+        font-size: 14px;
         line-height: 1.5rem !important;
-        /* FIX: The theme adds a text-shadow which can throw off rendering. Disable it. */
         text-shadow: none !important;
-        /* FIX: Reset padding on the code element itself to prevent the theme from adding extra space. */
         padding: 0 !important;
-        /* FIX: Ensure the code block expands correctly for horizontal scrolling. */
         display: inline-block;
         min-width: 100%;
       }
-      /* FIX: Force uniform font weight and style to prevent cursor misalignment. */
-      /* Some Prism themes apply bold/italic styles to tokens, which changes character widths */
-      /* and causes a mismatch between the textarea and the highlighted code. */
       code[class*="language-"] span.token {
         font-weight: normal !important;
         font-style: normal !important;
@@ -84,8 +76,36 @@
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
 
-    <!-- Prism.js Core & Autoloader for syntax highlighting -->
+    <!-- Prism.js Core -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    
+    <!-- Explicitly load dependencies for embedded highlighting (CSS, JS inside HTML) -->
+    <!-- Order matches dependency chain: Clike -> CSS/JS -> Markup -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-clike.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js"></script>
+    
+    <!-- Autoloader for other languages -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    
+    <!-- Force manual initialization of embedded highlighting -->
+    <script>
+      (function() {
+        // Wait for scripts to load and register embedded languages
+        // Prism automatically tries this but sometimes order matters with separate scripts
+        const checkPrism = setInterval(() => {
+          if (window.Prism && window.Prism.languages && window.Prism.languages.markup) {
+             clearInterval(checkPrism);
+             const markup = window.Prism.languages.markup;
+             // Re-trigger the inline adding logic if it exists
+             if (markup.tag && markup.tag.addInlined) {
+               if (window.Prism.languages.css) markup.tag.addInlined('style', 'css');
+               if (window.Prism.languages.javascript) markup.tag.addInlined('script', 'javascript');
+             }
+          }
+        }, 50);
+      })();
+    </script>
   </body>
 </html>
