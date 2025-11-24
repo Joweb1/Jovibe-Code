@@ -9,9 +9,7 @@ const Header: React.FC<HeaderProps> = ({ onRenameClick, onToggleSidebar }) => {
   return (
     <header className="bg-base-200 p-3 shadow-md flex justify-between items-center z-20">
       <div className="flex items-center gap-2">
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-brand-primary" viewBox="0 0 24 24" fill="currentColor">
-          <path fillRule="evenodd" d="M14.474 2.376a1.25 1.25 0 00-1.423-.442l-8.5 3.75a1.25 1.25 0 00-.801 1.15V17.25a1.25 1.25 0 001.25 1.25h.183a1.25 1.25 0 001.196-1.02L7.5 13l3.24 3.24a1.25 1.25 0 001.768 0l5.25-5.25a1.25 1.25 0 000-1.768L13.75 5.21l3.73-2.072a1.25 1.25 0 00-.006-2.762zM9.526 8.5H6.25a.75.75 0 000 1.5h3.276a.75.75 0 000-1.5z" clipRule="evenodd" />
-        </svg>
+        <img src="/logo.png" alt="Jovibe Code Logo" className="h-8 w-8 rounded-full" />
         <h1 className="text-xl font-bold text-base-content">Jovibe Code</h1>
       </div>
       <div className="flex items-center gap-2">
